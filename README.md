@@ -26,7 +26,7 @@ The challenge was to create an interactive card details form where users can fil
 ### Links
 
 - Solution URL: [GitHub](https://github.com/vensi9/interactive-card-details-form)
-- Live Site URL: [Live Site](https://interactive-card-form-reactjs.netlify.app/)
+- Live Site URL: [Live Site](https://interactive-card-form-react.netlify.app/)
 
 ## My process
 
@@ -38,7 +38,7 @@ The challenge was to create an interactive card details form where users can fil
 
 ### What I learned
 
-During this project, I learned how to handle form validations in real-time using React JS and improve my React JS skills.
+During this project, I learned how to handle form validations in real time using React JS and improved my React JS skills.
 
 ### Continued development
 
