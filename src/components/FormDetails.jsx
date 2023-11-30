@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
-import { Box, Button, Flex, FormControl, FormLabel, Image, Input, Text } from '@chakra-ui/react';
+import { Box, Button, Flex, FormControl, FormErrorMessage, FormLabel, Image, Input, Text } from '@chakra-ui/react';
 import { useNavigate } from 'react-router-dom';
 import Front from '../images/bg-card-front.png';
 import Back from '../images/bg-card-back.png';
+import { useForm } from 'react-hook-form';
 
 export const FormDetails = () => {
     const [cardNumber, setCardNumber] = useState('');
@@ -11,20 +12,48 @@ export const FormDetails = () => {
     const [expiryMonth, setExpiryMonth] = useState('');
     const [expiryYear, setExpiryYear] = useState('');
     const navigate = useNavigate();
+    const {
+        register,
+        handleSubmit,
+        formState: { errors, isSubmitting },
+        watch,
+    } = useForm();
+    const watchExpiryMonth = watch('expiryMonth', '');
+    const watchExpiryYear = watch('expiryYear', '');
+
+    const validateExpiryDate = () => {
+        const isMonthEmpty = !watchExpiryMonth.trim();
+        const isYearEmpty = !watchExpiryYear.trim();
+
+        if (isMonthEmpty && isYearEmpty) {
+            return "Can't be blank";
+        } else if (isMonthEmpty) {
+            return 'Month is required';
+        } else if (isYearEmpty) {
+            return 'Year is required';
+        }
+
+        return true;
+    };
+
     const handleCardNumberChange = (e) => {
         const input = e.target.value.replace(/\D/g, '').substring(0, 16); // Remove non-numeric characters and limit to 16 digits
-        const cardNumberWithSpaces = input
-            .replace(/(\d{4})/g, '$1 ')
-            .trim()
-            .substring(0, 19); // Add spaces after every 4 digits
-        setCardNumber(cardNumberWithSpaces, e.target.value);
+        const cardNumberWithSpaces = input.replace(/(\d{4})/g, '$1 ').trim().substring(0, 19); // Add spaces after every 4 digits
+        setCardNumber(cardNumberWithSpaces);
     };
+
     const handleCardNameChange = (e) => {
         setCardName(e.target.value);
     };
 
     const handleExpiryMonthChange = (e) => {
-        const input = e.target.value.replace(/\D/g, '').substring(0, 2); // Only allow numeric characters and limit to 2 digits
+        let input = e.target.value.replace(/\D/g, ''); // Remove non-numeric characters
+
+        if (input.length === 1 && parseInt(input) > 1) {
+            input = `0${input}`;
+        } else if (input.length === 2 && parseInt(input) > 12) {
+            input = '12';
+        }
         setExpiryMonth(input);
     };
 
@@ -36,10 +65,9 @@ export const FormDetails = () => {
     const handleCvvChange = (e) => {
         const input = e.target.value.replace(/\D/g, '').substring(0, 3); // Remove non-numeric characters and limit to 3 digits
         setCvv(input);
-        setCvv(e.target.value);
     };
-    const handleSubmit = (e) => {
-        e.preventDefault();
+
+    const onSubmit = (data) => {
         const cardDetails = {
             cardNumber,
             cardName,
@@ -47,15 +75,21 @@ export const FormDetails = () => {
             expiryYear,
             cvv,
         };
-
         // Redirect to a new route while passing card details as state
         navigate('/thank-you', { state: { cardDetails } });
     };
+
     return (
-        <Box >
-            <Flex display={{ base: 'grid', md: 'flex' }} height={'100vh'} justifyContent={'center'} alignItems={'center'} gap={{ md: '6vw', lg: '10vw' }}>
+        <Box>
+            <Flex
+                display={{ base: 'grid', md: 'flex' }}
+                height={'100vh'}
+                justifyContent={'center'}
+                alignItems={'center'}
+                gap={{ md: '6vw', lg: '10vw' }}
+            >
                 <Flex display={{ base: 'block', md: 'flex' }} flexDir={'column'} gap={{ md: 5, lg: 9 }} maxW={700} w={{ base: 250, sm: 300, md: 320, lg: 380 }}>
-                    
+
                     {/* front */}
                     <Box position="relative" top={{ base: '98', md: 'auto' }} boxShadow={'14px 6px 20px 0px hsl(279deg 6% 55% / 27%)'} height={{ base: '25vh', sm: "27vh", md: '31vh', lg: '32vh' }} right={{ base: '0', md: '6vw' }} borderRadius="10px" zIndex={20} overflow={'hidden'}>
                         <Image src={`${Front}`} w="100%" position="absolute" height={{ base: '25vh', sm: '27vh', md: "auto" }} zIndex="-1" />
@@ -94,32 +128,67 @@ export const FormDetails = () => {
                 </Flex >
 
                 {/* Form */}
-                <Box maxWidth={{ base: "300px", sm: '350px', md: "300px", lg: "350px", xl: "400px" }} position={{ base: 'relative' }} bottom={{ base: 30, md: 0 }} fontFamily={'Space Grotesk'} >
-                    <form onSubmit={handleSubmit}>
-                        <FormControl mt={{ base: 5, lg: 9 }} color={'hsl(278, 68%, 11%)'}>
+                <Box
+                    maxWidth={{ base: "300px", sm: '350px', md: "300px", lg: "350px", xl: "400px" }}
+                    position={{ base: 'relative' }}
+                    bottom={{ base: 30, md: 0 }}
+                    fontFamily={'Space Grotesk'}
+                >
+                    <form onSubmit={handleSubmit(onSubmit)}>
+                        <FormControl mt={{ base: 5, lg: 9 }} color={'hsl(278, 68%, 11%)'}
+                            isInvalid={errors.cardName}
+                        >
                             <FormLabel htmlFor="cardName" textTransform={'uppercase'} fontSize={{ base: 10, sm: 12, md: 10, lg: 12 }} letterSpacing={2} fontWeight={500}>Cardholder Name</FormLabel>
-                            <Input type="text"
-                                id="cardName"
+                            <Input
                                 value={cardName}
+                                type="text"
+                                id="cardName"
+                                {...register('cardName', {
+                                    required: 'Cardholder Name is required',
+                                    minLength: { value: 4, message: 'Minimum length should be 4' },
+                                })}
                                 onChange={handleCardNameChange}
-                                placeholder="e.g. Jane Appleseed" boxShadow={'none'} variant='outline' borderColor="hsl(270, 3%, 87%)" _hover={{ borderColor: "#63b3ed" }} _placeholder={{ opacity: 1, color: 'gray.500', fontSize: { base: 14, lg: 16 } }}
-                                required
+                                placeholder="e.g. Jane Appleseed"
+                                boxShadow={'none'}
+                                variant='outline'
+                                borderColor="hsl(270, 3%, 87%)"
+                                _hover={{ borderColor: "hsl(270, 3%, 87%)" }}
+                                _placeholder={{ opacity: 1, color: 'gray.500', fontSize: { base: 14, lg: 16 } }}
                             />
+                            <FormErrorMessage>
+                                {errors.cardName && errors.cardName.message}
+                            </FormErrorMessage>
                         </FormControl>
-                        <FormControl mt={{ base: 5, lg: 9 }} color={'hsl(278, 68%, 11%)'}>
+
+                        <FormControl isInvalid={errors.cardNumber} mt={{ base: 5, lg: 9 }} color={'hsl(278, 68%, 11%)'}>
                             <FormLabel htmlFor="cardNumber" textTransform={'uppercase'} fontSize={{ base: 10, sm: 12, md: 10, lg: 12 }} letterSpacing={2} fontWeight={500}>Card Number</FormLabel>
                             <Input type="text"
+                                {...register('cardNumber', {
+                                    required: 'Card Number is required',
+                                })}
                                 value={cardNumber}
                                 onChange={handleCardNumberChange}
-                                id="cardNumber" placeholder="e.g. 1234 5678 9123 0000" boxShadow={'none'} variant='outline' _placeholder={{ opacity: 1, color: 'gray.500', fontSize: { base: 14, lg: 16 } }} borderColor="hsl(270, 3%, 87%)" _hover={{ borderColor: "#63b3ed" }}
-                                required
+                                id="cardNumber"
+                                placeholder="e.g. 1234 5678 9123 0000"
+                                boxShadow={'none'}
+                                variant='outline'
+                                _placeholder={{ opacity: 1, color: 'gray.500', fontSize: { base: 14, lg: 16 } }}
+                                borderColor="hsl(270, 3%, 87%)"
+                                _hover={{ borderColor: "hsl(270, 3%, 87%)" }}
                                 maxLength={19}
                             />
+                            <FormErrorMessage>
+                                {errors.cardNumber && errors.cardNumber.message}
+                            </FormErrorMessage>
                         </FormControl>
+
                         <Flex justifyContent="space-between" mt={{ base: 5, lg: 9 }}>
-                            <FormControl flex="1" mr={2} color={'hsl(278, 68%, 11%)'}>
+                            <FormControl isInvalid={errors.expiryMonth || errors.expiryYear} flex="1" mr={2} color={'hsl(278, 68%, 11%)'}>
                                 <FormLabel htmlFor="expiryDate" textTransform={'uppercase'} fontSize={{ base: 10, sm: 12, md: 10, lg: 12 }} letterSpacing={2} fontWeight={500}>Exp. Date (MM/YY)</FormLabel>
                                 <Input
+                                    {...register('expiryMonth', {
+                                        required: "Can't be blank",
+                                    })}
                                     value={expiryMonth}
                                     onChange={handleExpiryMonthChange}
                                     maxLength={2}
@@ -129,12 +198,14 @@ export const FormDetails = () => {
                                     variant='outline'
                                     _placeholder={{ opacity: 1, color: 'gray.500', fontSize: { base: 14, lg: 16 } }}
                                     borderColor="hsl(270, 3%, 87%)"
-                                    _hover={{ borderColor: "#63b3ed" }}
-                                    w={{ base: '60px',xl:'70px'}}
+                                    _hover={{ borderColor: "hsl(270, 3%, 87%)" }}
+                                    w={{ base: '60px', xl: '70px' }}
                                     mr={'10px'}
-                                    required
                                 />
                                 <Input
+                                    {...register('expiryYear', {
+                                        required: "Can't be blank",
+                                    })}
                                     value={expiryYear}
                                     onChange={handleExpiryYearChange}
                                     maxLength={2}
@@ -144,22 +215,38 @@ export const FormDetails = () => {
                                     variant='outline'
                                     _placeholder={{ opacity: 1, color: 'gray.500', fontSize: { base: 14, lg: 16 } }}
                                     borderColor="hsl(270, 3%, 87%)"
-                                    _hover={{ borderColor: "#63b3ed" }}
-                                    w={{ base: '60px',xl:'70px'}}
-                                    required
+                                    _hover={{ borderColor: "hsl(270, 3%, 87%)" }}
+                                    w={{ base: '60px', xl: '70px' }}
                                 />
+                                <FormErrorMessage>
+                                    {validateExpiryDate()}
+                                </FormErrorMessage>
                             </FormControl>
-                            <FormControl flex="1" ml={2} color={'hsl(278, 68%, 11%)'}>
+
+                            <FormControl isInvalid={errors.cvv} flex="1" ml={2} color={'hsl(278, 68%, 11%)'}>
                                 <FormLabel htmlFor="cvv" textTransform={'uppercase'} fontSize={{ base: 10, sm: 12, md: 10, lg: 12 }} letterSpacing={2} fontWeight={500}>CVc</FormLabel>
                                 <Input type="text"
+                                    {...register('cvv', {
+                                        required: "Can't be blank",
+                                    })}
                                     value={cvv}
                                     onChange={handleCvvChange}
                                     maxLength={3}
-                                    id="cvv" placeholder="e.g. 123" variant='outline' _placeholder={{ opacity: 1, color: 'gray.500', fontSize: { base: 14, lg: 16 } }} borderColor="hsl(270, 3%, 87%)" _hover={{ borderColor: "#63b3ed" }}
-                                    required />
+                                    id="cvv"
+                                    placeholder="e.g. 123"
+                                    variant='outline'
+                                    _placeholder={{ opacity: 1, color: 'gray.500', fontSize: { base: 14, lg: 16 } }}
+                                    borderColor="hsl(270, 3%, 87%)"
+                                    _hover={{ borderColor: "hsl(270, 3%, 87%)" }}
+                                />
+                                <FormErrorMessage>
+                                    {errors.cvv && errors.cvv.message}
+                                </FormErrorMessage>
                             </FormControl>
                         </Flex>
-                        <Button color={'hsl(0, 0%, 100%)'} py={{ md: 5, lg: 6 }} fontSize={{ md: 14, lg: 16 }} w={'-webkit-fill-available'} mt={{ base: 7, lg: 10 }} type="submit" _hover={{ bg: 'hsl(278, 68%, 11%)' }} bg={'hsl(278, 68%, 11%)'} fontWeight={500}>
+                        <Button
+                            isLoading={isSubmitting}
+                            color={'hsl(0, 0%, 100%)'} py={{ md: 5, lg: 6 }} fontSize={{ md: 14, lg: 16 }} w={'-webkit-fill-available'} mt={{ base: 7, lg: 10 }} type="submit" _hover={{ bg: 'hsl(278, 68%, 11%)' }} bg={'hsl(278, 68%, 11%)'} fontWeight={500}>
                             Confirm
                         </Button>
                     </form>

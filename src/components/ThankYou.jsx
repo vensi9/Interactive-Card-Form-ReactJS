@@ -15,7 +15,7 @@ function ThankYou() {
                     <>
                         <Flex display={{ base: 'block', md: 'flex' }} flexDir={'column'} gap={{ md: 5, lg: 9 }} maxW={700} w={{ base: 250, sm: 300, md: 320, lg: 380 }}>
                             {/* Front */}
-                            <Box position="relative" top={{ base: '98', md: 'auto' }} boxShadow={'14px 6px 20px 0px hsl(279deg 6% 55% / 27%)'} height={{ base: '25vh', sm: "27vh", md: '31vh', lg: '33vh' }} right={{ base: '0', md: '6vw' }} borderRadius="10px" zIndex={20} overflow={'hidden'}>
+                            <Box position="relative" top={{ base: '98', md: 'auto' }} boxShadow={'14px 6px 20px 0px hsl(279deg 6% 55% / 27%)'} height={{ base: '25vh', sm: "27vh", md: '31vh', lg: '32vh' }} right={{ base: '0', md: '6vw' }} borderRadius="10px" zIndex={20} overflow={'hidden'}>
                                 <Image src={`${Front}`} w="100%" position="absolute" height={{ base: '25vh', sm: '27vh', md: "auto" }} zIndex="-1" />
                                 <Box position="relative" p={6} color="white" fontFamily={'Space Grotesk'}>
                                     <Flex justifyContent='space-evenly' flexDirection={'column'} gap={{ base: '9vw', sm: '5vw', lg: '3.5vw' }}>
