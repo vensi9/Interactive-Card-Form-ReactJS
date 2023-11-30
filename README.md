@@ -1,13 +1,11 @@
-# Frontend Mentor - Interactive card details form solution
-
-This is a solution to the [Interactive card details form challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/interactive-card-details-form-XpS8cKZDWw). Frontend Mentor challenges are designed to help improve coding skills by building realistic projects.
+# Interactive card details form
 
 ## Table of contents
 
-- [Frontend Mentor - Interactive card details form solution](#frontend-mentor---interactive-card-details-form-solution)
+- [Interactive card details form](#interactive-card-details-form)
   - [Table of contents](#table-of-contents)
   - [Overview](#overview)
-    - [The challenge](#the-challenge)
+    - [Project](#project)
     - [Screenshot](#screenshot)
     - [Links](#links)
   - [My process](#my-process)
@@ -17,7 +15,7 @@ This is a solution to the [Interactive card details form challenge on Frontend M
 
 ## Overview
 
-### The challenge
+### Project
 
 The challenge was to create an interactive card details form where users can fill in the form and see the card details update in real-time. Users should also receive error messages if any input field is empty or if the card number, expiry date, or CVC fields are in the wrong format. Additionally, the layout should be responsive for different screen sizes and include hover, active, and focus states for interactive elements.
 
@@ -28,7 +26,7 @@ The challenge was to create an interactive card details form where users can fil
 ### Links
 
 - Solution URL: [GitHub](https://github.com/vensi9/interactive-card-details-form)
-- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
+- Live Site URL: [Live Site](https://interactive-card-form-reactjs.netlify.app/)
 
 ## My process
 

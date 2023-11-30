@@ -91,7 +91,7 @@ export const FormDetails = () => {
                 <Flex display={{ base: 'block', md: 'flex' }} flexDir={'column'} gap={{ md: 5, lg: 9 }} maxW={700} w={{ base: 250, sm: 300, md: 320, lg: 380 }}>
 
                     {/* front */}
-                    <Box position="relative" top={{ base: '98', md: 'auto' }} boxShadow={'14px 6px 20px 0px hsl(279deg 6% 55% / 27%)'} height={{ base: '25vh', sm: "27vh", md: '31vh', lg: '32vh' }} right={{ base: '0', md: '6vw' }} borderRadius="10px" zIndex={20} overflow={'hidden'}>
+                    <Box position="relative" top={{ base: '98', md: 'auto' }} boxShadow={'14px 6px 20px 0px hsl(279deg 6% 55% / 27%)'} height={{ base: '25vh', sm: "27vh", md: '31vh', lg: '32vh' }} right={{ base: '0', md: '6vw' }} zIndex={20} overflow={'hidden'}>
                         <Image src={`${Front}`} w="100%" position="absolute" height={{ base: '25vh', sm: '27vh', md: "auto" }} zIndex="-1" />
                         <Box position="relative" p={6} color="white" fontFamily={'Space Grotesk'}>
                             <Flex justifyContent='space-evenly' flexDirection={'column'} gap={{ base: '9vw', sm: '5vw', lg: '3.5vw' }}>
@@ -116,11 +116,11 @@ export const FormDetails = () => {
                     </Box>
 
                     {/* Back */}
-                    <Box boxShadow={'14px 6px 20px 0px hsl(279deg 6% 55% / 27%)'} position="relative" top={{ base: '-125px', sm: '-140px', md: 'auto' }} left={{ base: 50, md: 0 }} height={{ base: '25vh', sm: '27vh', md: "33vh" }} borderRadius="10px" zIndex={10} overflow={'hidden'}>
+                    <Box boxShadow={'14px 6px 20px 0px hsl(279deg 6% 55% / 27%)'} position="relative" top={{ base: '-125px', sm: '-140px', md: 'auto' }} left={{ base: 50, md: 0 }} height={{ base: '25vh', sm: '27vh', md: "33vh" }} zIndex={10} overflow={'hidden'}>
                         <Image src={`${Back}`} w="100%" h="100%" position="absolute" zIndex="-1" />
                         <Flex position="relative" fontFamily={'Space Grotesk'}
                             justifyContent={'end'} alignItems={'center'} right={{ base: '9vw', sm: '7vw', md: '5vw', lg: '4vw' }} height='-webkit-fill-available'>
-                            <Text fontSize={10} fontWeight={500} letterSpacing={2}>
+                            <Text color={'hsl(0, 0%, 100%)'} fontSize={10} fontWeight={500} letterSpacing={2}>
                                 {cvv || '000'}
                             </Text>
                         </Flex>
@@ -246,7 +246,7 @@ export const FormDetails = () => {
                         </Flex>
                         <Button
                             isLoading={isSubmitting}
-                            color={'hsl(0, 0%, 100%)'} py={{ md: 5, lg: 6 }} fontSize={{ md: 14, lg: 16 }} w={'-webkit-fill-available'} mt={{ base: 7, lg: 10 }} type="submit" _hover={{ bg: 'hsl(278, 68%, 11%)' }} bg={'hsl(278, 68%, 11%)'} fontWeight={500}>
+                            color={'hsl(0, 0%, 100%)'} py={{ md: 5, lg: 6 }} fontSize={{ md: 14, lg: 16 }} w={'-webkit-fill-available'} mt={{ base: 7, lg: 10 }} type="submit" _hover={{ bg: '#350a4f', transition: '0.3s' }} bg={'hsl(278, 68%, 11%)'} fontWeight={500}>
                             Confirm
                         </Button>
                     </form>
