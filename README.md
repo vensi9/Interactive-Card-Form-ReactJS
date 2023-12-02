@@ -26,7 +26,7 @@ The challenge was to create an interactive card details form where users can fil
 ### Links
 
 - Solution URL: [GitHub](https://github.com/vensi9/interactive-card-details-form)
-- Live Site URL: [Live Site](https://interactive-card-form-react.netlify.app/)
+- Live Site URL: [Live Site](https://card-form-reactjs.netlify.app/)
 
 ## My process
 

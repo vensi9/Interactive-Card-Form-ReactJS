@@ -91,7 +91,7 @@ export const FormDetails = () => {
                 <Flex display={{ base: 'block', md: 'flex' }} flexDir={'column'} gap={{ md: 5, lg: 9 }} maxW={700} w={{ base: 250, sm: 300, md: 320, lg: 380, "2xl": 550 }}>
 
                     {/* front */}
-                    <Box position="relative" top={{ base: '98', md: 'auto' }}  borderRadius={"10px"}  boxShadow={{base:'14px 6px 20px 0px hsl(279deg 6% 55% / 27%)',"2xl":"none"}} height={{ base: '25vh', sm: "27vh", md: '31vh', lg: '32vh', "2xl": '35vh' }} right={{ base: '0', md: '6vw' }} zIndex={20} overflow={'hidden'}>
+                    <Box position="relative" top={{ base: '98', md: 'auto' }} borderRadius={"10px"} boxShadow={{ base: '14px 6px 20px 0px hsl(279deg 6% 55% / 27%)', "2xl": "none" }} height={{ base: '25vh', sm: "27vh", md: '31vh', lg: '32vh', "2xl": '35vh' }} right={{ base: '0', md: '6vw' }} zIndex={20} overflow={'hidden'}>
                         <Image src={`${Front}`} w="100%" position="absolute" height={{ base: '25vh', sm: '27vh', md: "auto" }} zIndex="-1" />
                         <Box position="relative" p={6} color="white" fontFamily={'Space Grotesk'}>
                             <Flex justifyContent='space-evenly' flexDirection={'column'} gap={{ base: '9vw', sm: '5vw', lg: '3.5vw', "2xl": "4vw" }}>
@@ -116,7 +116,7 @@ export const FormDetails = () => {
                     </Box>
 
                     {/* Back */}
-                    <Box boxShadow={{base:'14px 6px 20px 0px hsl(279deg 6% 55% / 27%)',"2xl":"none"}} borderRadius={"10px"} position="relative" top={{ base: '-125px', sm: '-140px', md: 'auto' }} left={{ base: 50, md: 0 }} height={{ base: '25vh', sm: '27vh', md: "33vh", lg: '32vh', "2xl": '35vh' }} zIndex={10} overflow={'hidden'}>
+                    <Box boxShadow={{ base: '14px 6px 20px 0px hsl(279deg 6% 55% / 27%)', "2xl": "none" }} borderRadius={"10px"} position="relative" top={{ base: '-125px', sm: '-140px', md: 'auto' }} left={{ base: 50, md: 0 }} height={{ base: '25vh', sm: '27vh', md: "33vh", lg: '32vh', "2xl": '35vh' }} zIndex={10} overflow={'hidden'}>
                         <Image src={`${Back}`} w="100%" h="100%" position="absolute" zIndex="-1" />
                         <Flex position="relative" fontFamily={'Space Grotesk'}
                             justifyContent={'end'} alignItems={'center'} right={{ base: '9vw', sm: '7vw', md: '5vw', lg: '4vw' }} height='-webkit-fill-available'>
@@ -151,7 +151,7 @@ export const FormDetails = () => {
                                 onChange={handleCardNameChange}
                                 placeholder="e.g. Jane Appleseed"
                                 boxShadow={'none'}
-                                height={{ "2xl": "7vh" }}
+                                height={{ base: '2.5rem', "2xl": "7vh" }}
                                 variant='outline'
                                 borderColor="hsl(270, 3%, 87%)"
                                 _hover={{ borderColor: "hsl(270, 3%, 87%)" }}
@@ -174,7 +174,7 @@ export const FormDetails = () => {
                                 placeholder="e.g. 1234 5678 9123 0000"
                                 boxShadow={'none'}
                                 variant='outline'
-                                height={{ "2xl": "7vh" }}
+                                height={{ base: '2.5rem', "2xl": "7vh" }}
                                 _placeholder={{ opacity: 1, color: 'gray.500', fontSize: { base: 14, lg: 16, "2xl": 20 } }}
                                 borderColor="hsl(270, 3%, 87%)"
                                 _hover={{ borderColor: "hsl(270, 3%, 87%)" }}
@@ -199,7 +199,7 @@ export const FormDetails = () => {
                                     id="expiryMonth"
                                     placeholder="MM"
                                     variant='outline'
-                                    height={{ "2xl": "7vh" }}
+                                    height={{ base: '2.5rem', "2xl": "7vh" }}
                                     _placeholder={{ opacity: 1, color: 'gray.500', fontSize: { base: 14, lg: 16, "2xl": 20 } }}
                                     borderColor="hsl(270, 3%, 87%)"
                                     _hover={{ borderColor: "hsl(270, 3%, 87%)" }}
@@ -217,7 +217,7 @@ export const FormDetails = () => {
                                     id="expiryYear"
                                     placeholder="YY"
                                     variant='outline'
-                                    height={{ "2xl": "7vh" }}
+                                    height={{ base: '2.5rem', "2xl": "7vh" }}
                                     _placeholder={{ opacity: 1, color: 'gray.500', fontSize: { base: 14, lg: 16, "2xl": 20 } }}
                                     borderColor="hsl(270, 3%, 87%)"
                                     _hover={{ borderColor: "hsl(270, 3%, 87%)" }}
@@ -240,7 +240,7 @@ export const FormDetails = () => {
                                     id="cvv"
                                     placeholder="e.g. 123"
                                     variant='outline'
-                                    height={{ "2xl": "7vh" }}
+                                    height={{ base: '2.5rem', "2xl": "7vh" }}
                                     _placeholder={{ opacity: 1, color: 'gray.500', fontSize: { base: 14, lg: 16, "2xl": 20 } }}
                                     borderColor="hsl(270, 3%, 87%)"
                                     _hover={{ borderColor: "hsl(270, 3%, 87%)" }}
@@ -252,7 +252,7 @@ export const FormDetails = () => {
                         </Flex>
                         <Button
                             isLoading={isSubmitting}
-                            color={'hsl(0, 0%, 100%)'} py={{ md: 5, lg: 6,"2xl":8 }} fontSize={{ md: 14, lg: 16,"2xl":20 }} w={'-webkit-fill-available'} mt={{ base: 7, lg: 10 }} type="submit" _hover={{ bg: '#350a4f', transition: '0.3s' }} bg={'hsl(278, 68%, 11%)'} fontWeight={500}>
+                            color={'hsl(0, 0%, 100%)'} py={{ md: 5, lg: 6, "2xl": 8 }} fontSize={{ md: 14, lg: 16, "2xl": 20 }} w={'-webkit-fill-available'} mt={{ base: 7, lg: 10 }} type="submit" _hover={{ bg: '#350a4f', transition: '0.3s' }} bg={'hsl(278, 68%, 11%)'} fontWeight={500}>
                             Confirm
                         </Button>
                     </form>
