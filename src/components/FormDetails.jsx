@@ -88,26 +88,26 @@ export const FormDetails = () => {
                 alignItems={'center'}
                 gap={{ md: '6vw', lg: '10vw' }}
             >
-                <Flex display={{ base: 'block', md: 'flex' }} flexDir={'column'} gap={{ md: 5, lg: 9 }} maxW={700} w={{ base: 250, sm: 300, md: 320, lg: 380 }}>
+                <Flex display={{ base: 'block', md: 'flex' }} flexDir={'column'} gap={{ md: 5, lg: 9 }} maxW={700} w={{ base: 250, sm: 300, md: 320, lg: 380, "2xl": 550 }}>
 
                     {/* front */}
-                    <Box position="relative" top={{ base: '98', md: 'auto' }} boxShadow={'14px 6px 20px 0px hsl(279deg 6% 55% / 27%)'} height={{ base: '25vh', sm: "27vh", md: '31vh', lg: '32vh' }} right={{ base: '0', md: '6vw' }} zIndex={20} overflow={'hidden'}>
+                    <Box position="relative" top={{ base: '98', md: 'auto' }}  borderRadius={"10px"}  boxShadow={{base:'14px 6px 20px 0px hsl(279deg 6% 55% / 27%)',"2xl":"none"}} height={{ base: '25vh', sm: "27vh", md: '31vh', lg: '32vh', "2xl": '35vh' }} right={{ base: '0', md: '6vw' }} zIndex={20} overflow={'hidden'}>
                         <Image src={`${Front}`} w="100%" position="absolute" height={{ base: '25vh', sm: '27vh', md: "auto" }} zIndex="-1" />
                         <Box position="relative" p={6} color="white" fontFamily={'Space Grotesk'}>
-                            <Flex justifyContent='space-evenly' flexDirection={'column'} gap={{ base: '9vw', sm: '5vw', lg: '3.5vw' }}>
+                            <Flex justifyContent='space-evenly' flexDirection={'column'} gap={{ base: '9vw', sm: '5vw', lg: '3.5vw', "2xl": "4vw" }}>
                                 <Flex alignItems={'center'} gap={2.5}>
-                                    <Box backgroundColor="white" p={{ base: 3, sm: 4, lg: 5 }} borderRadius="50%"></Box>
-                                    <Box outline='0.1vw solid' w={{ base: 11, sm: 13, lg: 15 }} h={{ base: 11, sm: 13, lg: 15 }} outlineColor={'white'} borderRadius={50}></Box>
+                                    <Box backgroundColor="white" p={{ base: 3, sm: 4, lg: 5, "2xl": 7 }} borderRadius="50%"></Box>
+                                    <Box outline='0.1vw solid' w={{ base: 11, sm: 13, lg: 15, "2xl": 18 }} h={{ base: 11, sm: 13, lg: 15, "2xl": 18 }} outlineColor={'white'} borderRadius={50}></Box>
                                 </Flex>
                                 <Flex justifyContent="space-between" flexDir={'column'} gap={'1vw'}>
-                                    <Text fontSize={{ base: '12px', sm: '16px', md: '18px', lg: '20px', '2xl': "20px" }} letterSpacing={3} fontWeight={500}>
+                                    <Text fontSize={{ base: '12px', sm: '16px', md: '18px', lg: '20px', '2xl': "26px" }} letterSpacing={3} fontWeight={500}>
                                         {cardNumber || '0000 0000 0000 0000'}
                                     </Text>
                                     <Flex justifyContent="space-between">
-                                        <Text fontSize={{ base: 9, sm: 11, lg: 12 }} letterSpacing={1}>{cardName || 'Jane Appleseed'}</Text>
+                                        <Text fontSize={{ base: 9, sm: 11, lg: 12, "2xl": 16 }} letterSpacing={1}>{cardName || 'Jane Appleseed'}</Text>
                                         <Flex>
-                                            <Text fontSize={{ base: 9, sm: 11, lg: 12 }} letterSpacing={1}>{expiryMonth || '00'}/</Text>
-                                            <Text fontSize={{ base: 9, sm: 11, lg: 12 }} letterSpacing={1}>{expiryYear || '00'}</Text>
+                                            <Text fontSize={{ base: 9, sm: 11, lg: 12, "2xl": 16 }} letterSpacing={1}>{expiryMonth || '00'}/</Text>
+                                            <Text fontSize={{ base: 9, sm: 11, lg: 12, "2xl": 16 }} letterSpacing={1}>{expiryYear || '00'}</Text>
                                         </Flex>
                                     </Flex>
                                 </Flex>
@@ -116,11 +116,11 @@ export const FormDetails = () => {
                     </Box>
 
                     {/* Back */}
-                    <Box boxShadow={'14px 6px 20px 0px hsl(279deg 6% 55% / 27%)'} position="relative" top={{ base: '-125px', sm: '-140px', md: 'auto' }} left={{ base: 50, md: 0 }} height={{ base: '25vh', sm: '27vh', md: "33vh" }} zIndex={10} overflow={'hidden'}>
+                    <Box boxShadow={{base:'14px 6px 20px 0px hsl(279deg 6% 55% / 27%)',"2xl":"none"}} borderRadius={"10px"} position="relative" top={{ base: '-125px', sm: '-140px', md: 'auto' }} left={{ base: 50, md: 0 }} height={{ base: '25vh', sm: '27vh', md: "33vh", lg: '32vh', "2xl": '35vh' }} zIndex={10} overflow={'hidden'}>
                         <Image src={`${Back}`} w="100%" h="100%" position="absolute" zIndex="-1" />
                         <Flex position="relative" fontFamily={'Space Grotesk'}
                             justifyContent={'end'} alignItems={'center'} right={{ base: '9vw', sm: '7vw', md: '5vw', lg: '4vw' }} height='-webkit-fill-available'>
-                            <Text color={'hsl(0, 0%, 100%)'} fontSize={10} fontWeight={500} letterSpacing={2}>
+                            <Text color={'hsl(0, 0%, 100%)'} fontSize={{ base: 10, "2xl": 15 }} fontWeight={500} letterSpacing={2}>
                                 {cvv || '000'}
                             </Text>
                         </Flex>
@@ -129,8 +129,9 @@ export const FormDetails = () => {
 
                 {/* Form */}
                 <Box
-                    maxWidth={{ base: "300px", sm: '350px', md: "300px", lg: "350px", xl: "400px" }}
+                    maxWidth={{ base: "300px", sm: '350px', md: "300px", lg: "350px", xl: "400px", "2xl": "1200px" }}
                     position={{ base: 'relative' }}
+                    w={{ "2xl": "600px" }}
                     bottom={{ base: 30, md: 0 }}
                     fontFamily={'Space Grotesk'}
                 >
@@ -138,7 +139,7 @@ export const FormDetails = () => {
                         <FormControl mt={{ base: 5, lg: 9 }} color={'hsl(278, 68%, 11%)'}
                             isInvalid={errors.cardName}
                         >
-                            <FormLabel htmlFor="cardName" textTransform={'uppercase'} fontSize={{ base: 10, sm: 12, md: 10, lg: 12 }} letterSpacing={2} fontWeight={500}>Cardholder Name</FormLabel>
+                            <FormLabel htmlFor="cardName" textTransform={'uppercase'} fontSize={{ base: 10, sm: 12, md: 10, lg: 12, "2xl": 16 }} letterSpacing={2} fontWeight={500}>Cardholder Name</FormLabel>
                             <Input
                                 value={cardName}
                                 type="text"
@@ -150,10 +151,11 @@ export const FormDetails = () => {
                                 onChange={handleCardNameChange}
                                 placeholder="e.g. Jane Appleseed"
                                 boxShadow={'none'}
+                                height={{ "2xl": "7vh" }}
                                 variant='outline'
                                 borderColor="hsl(270, 3%, 87%)"
                                 _hover={{ borderColor: "hsl(270, 3%, 87%)" }}
-                                _placeholder={{ opacity: 1, color: 'gray.500', fontSize: { base: 14, lg: 16 } }}
+                                _placeholder={{ opacity: 1, color: 'gray.500', fontSize: { base: 14, lg: 16, "2xl": 20 } }}
                             />
                             <FormErrorMessage>
                                 {errors.cardName && errors.cardName.message}
@@ -161,7 +163,7 @@ export const FormDetails = () => {
                         </FormControl>
 
                         <FormControl isInvalid={errors.cardNumber} mt={{ base: 5, lg: 9 }} color={'hsl(278, 68%, 11%)'}>
-                            <FormLabel htmlFor="cardNumber" textTransform={'uppercase'} fontSize={{ base: 10, sm: 12, md: 10, lg: 12 }} letterSpacing={2} fontWeight={500}>Card Number</FormLabel>
+                            <FormLabel htmlFor="cardNumber" textTransform={'uppercase'} fontSize={{ base: 10, sm: 12, md: 10, lg: 12, "2xl": 16 }} letterSpacing={2} fontWeight={500}>Card Number</FormLabel>
                             <Input type="text"
                                 {...register('cardNumber', {
                                     required: 'Card Number is required',
@@ -172,7 +174,8 @@ export const FormDetails = () => {
                                 placeholder="e.g. 1234 5678 9123 0000"
                                 boxShadow={'none'}
                                 variant='outline'
-                                _placeholder={{ opacity: 1, color: 'gray.500', fontSize: { base: 14, lg: 16 } }}
+                                height={{ "2xl": "7vh" }}
+                                _placeholder={{ opacity: 1, color: 'gray.500', fontSize: { base: 14, lg: 16, "2xl": 20 } }}
                                 borderColor="hsl(270, 3%, 87%)"
                                 _hover={{ borderColor: "hsl(270, 3%, 87%)" }}
                                 maxLength={19}
@@ -184,7 +187,7 @@ export const FormDetails = () => {
 
                         <Flex justifyContent="space-between" mt={{ base: 5, lg: 9 }}>
                             <FormControl isInvalid={errors.expiryMonth || errors.expiryYear} flex="1" mr={2} color={'hsl(278, 68%, 11%)'}>
-                                <FormLabel htmlFor="expiryDate" textTransform={'uppercase'} fontSize={{ base: 10, sm: 12, md: 10, lg: 12 }} letterSpacing={2} fontWeight={500}>Exp. Date (MM/YY)</FormLabel>
+                                <FormLabel htmlFor="expiryDate" textTransform={'uppercase'} fontSize={{ base: 10, sm: 12, md: 10, lg: 12, "2xl": 16 }} letterSpacing={2} fontWeight={500}>Exp. Date (MM/YY)</FormLabel>
                                 <Input
                                     {...register('expiryMonth', {
                                         required: "Can't be blank",
@@ -196,7 +199,8 @@ export const FormDetails = () => {
                                     id="expiryMonth"
                                     placeholder="MM"
                                     variant='outline'
-                                    _placeholder={{ opacity: 1, color: 'gray.500', fontSize: { base: 14, lg: 16 } }}
+                                    height={{ "2xl": "7vh" }}
+                                    _placeholder={{ opacity: 1, color: 'gray.500', fontSize: { base: 14, lg: 16, "2xl": 20 } }}
                                     borderColor="hsl(270, 3%, 87%)"
                                     _hover={{ borderColor: "hsl(270, 3%, 87%)" }}
                                     w={{ base: '60px', xl: '70px' }}
@@ -213,7 +217,8 @@ export const FormDetails = () => {
                                     id="expiryYear"
                                     placeholder="YY"
                                     variant='outline'
-                                    _placeholder={{ opacity: 1, color: 'gray.500', fontSize: { base: 14, lg: 16 } }}
+                                    height={{ "2xl": "7vh" }}
+                                    _placeholder={{ opacity: 1, color: 'gray.500', fontSize: { base: 14, lg: 16, "2xl": 20 } }}
                                     borderColor="hsl(270, 3%, 87%)"
                                     _hover={{ borderColor: "hsl(270, 3%, 87%)" }}
                                     w={{ base: '60px', xl: '70px' }}
@@ -224,7 +229,7 @@ export const FormDetails = () => {
                             </FormControl>
 
                             <FormControl isInvalid={errors.cvv} flex="1" ml={2} color={'hsl(278, 68%, 11%)'}>
-                                <FormLabel htmlFor="cvv" textTransform={'uppercase'} fontSize={{ base: 10, sm: 12, md: 10, lg: 12 }} letterSpacing={2} fontWeight={500}>CVc</FormLabel>
+                                <FormLabel htmlFor="cvv" textTransform={'uppercase'} fontSize={{ base: 10, sm: 12, md: 10, lg: 12, "2xl": 16 }} letterSpacing={2} fontWeight={500}>CVc</FormLabel>
                                 <Input type="text"
                                     {...register('cvv', {
                                         required: "Can't be blank",
@@ -235,7 +240,8 @@ export const FormDetails = () => {
                                     id="cvv"
                                     placeholder="e.g. 123"
                                     variant='outline'
-                                    _placeholder={{ opacity: 1, color: 'gray.500', fontSize: { base: 14, lg: 16 } }}
+                                    height={{ "2xl": "7vh" }}
+                                    _placeholder={{ opacity: 1, color: 'gray.500', fontSize: { base: 14, lg: 16, "2xl": 20 } }}
                                     borderColor="hsl(270, 3%, 87%)"
                                     _hover={{ borderColor: "hsl(270, 3%, 87%)" }}
                                 />
@@ -246,7 +252,7 @@ export const FormDetails = () => {
                         </Flex>
                         <Button
                             isLoading={isSubmitting}
-                            color={'hsl(0, 0%, 100%)'} py={{ md: 5, lg: 6 }} fontSize={{ md: 14, lg: 16 }} w={'-webkit-fill-available'} mt={{ base: 7, lg: 10 }} type="submit" _hover={{ bg: '#350a4f', transition: '0.3s' }} bg={'hsl(278, 68%, 11%)'} fontWeight={500}>
+                            color={'hsl(0, 0%, 100%)'} py={{ md: 5, lg: 6,"2xl":8 }} fontSize={{ md: 14, lg: 16,"2xl":20 }} w={'-webkit-fill-available'} mt={{ base: 7, lg: 10 }} type="submit" _hover={{ bg: '#350a4f', transition: '0.3s' }} bg={'hsl(278, 68%, 11%)'} fontWeight={500}>
                             Confirm
                         </Button>
                     </form>
